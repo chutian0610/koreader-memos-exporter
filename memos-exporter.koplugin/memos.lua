@@ -37,7 +37,8 @@ local function makeRequest(method, request_body, api, token)
 		return nil, status
 	end
 
-	local response = json.decode(sink[1])
+	local response_json = table.concat(sink)
+	local response = json.decode(response_json)
 	return response
 end
 
@@ -173,10 +174,7 @@ function MemosExporter:createHighlights(booknotes)
 	local existing_memos, err = makeRequest(
 		"GET",
 		nil,
-		self.settings.get_api
-			.. '?filter=content.contains("'
-			.. book_title_tag
-			.. '")&pageSize=1000',
+		self.settings.get_api .. '?filter=content.contains("' .. book_title_tag .. '")&pageSize=1000',
 		self.settings.token
 	)
 	if not existing_memos then
