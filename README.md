@@ -7,7 +7,6 @@ You will need another variable to fetch all the notes, your settings.lua should 
 ```lua
 ["memos"] = {
     ["api"] = "https://your-domain.com/api/v1/memos",
-    ["get_api"] = "https://your-domain.com/api/v1/users/{your_user_id}/memos",
     ["token"] = "your-token"
 }
 ```
